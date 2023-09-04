@@ -20,25 +20,14 @@ copyright = f'{author}, {datetime.date.today().year}'
 # -- General configuration ---------------------------------------------------
 
 needs_sphinx = '4.3.2'
-extensions = [
-    'sphinx_copybutton',
-    'sphinx_design',
-]
+extensions = []
 root_doc = 'index'
 exclude_patterns = ['.sphinx/venv/*']
 
 manpages_url = 'https://manpages.ubuntu.com/manpages/mantic/en/man{section}/{page}.{section}.html'
 
-# Sphinx-copybutton config options:
-# 1) prompt to be stripped from copied code.
-# 2) Set to copy all lines (not just prompt lines) to ensure multiline snippets
-# can be copied even if they don't contain an EOF line.
-copybutton_prompt_text = '$ '
-copybutton_only_copy_prompt_lines = False
-
 # -- Options for HTML output -------------------------------------------------
 
-html_theme = 'furo'
 html_title = 'Test Project'
 
 # -- Options for EPUB output -------------------------------------------------

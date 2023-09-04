@@ -15,24 +15,18 @@ PYTHON        ?= python3
 help:
 	@echo "The following make targets are available:"
 	@echo "* install   -- set up a virtual-env to work on documentation"
-	@echo "* run       -- watch, build and serve the documentation"
 	@echo "* html      -- build HTML output under $(BUILDDIR)/html"
 	@echo "* serve     -- serve HTML output from $(BUILDDIR)/html"
 	@echo "* epub      -- build epub output under $(BUILDDIR)/epub"
 	@echo "* pdf       -- build pdf output under $(BUILDDIR)/pdf"
 	@echo "* clean-doc -- clean built doc files"
 	@echo "* clean     -- clean full environment"
-	@echo "* spelling  -- check spelling"
-	@echo "* linkcheck -- check external links"
 	@echo "-------------------------------------------"
 
 install:
 	@echo "... setting up virtualenv"
 	$(PYTHON) -m venv $(VENVDIR)
 	$(IN_VENV); pip install --upgrade -r .sphinx/requirements.txt
-
-run:
-	$(IN_VENV); sphinx-autobuild -b html "$(SOURCEDIR)" "$(BUILDDIR)"/html
 
 html:
 	$(IN_VENV); $(SPHINXBUILD) -b html "$(SOURCEDIR)" "$(BUILDDIR)"/html
@@ -56,13 +50,9 @@ clean-doc:
 distclean:
 	rm -rf "$(BUILDDIR)"
 	rm -rf "$(VENVDIR)"
-
-spelling: html
-	$(IN_VENV); $(PYTHON) -m pyspelling -c .sphinx/spellingcheck.yaml
-
-linkcheck: html epub
-	$(IN_VENV); $(SPHINXBUILD) -b linkcheck "$(SOURCEDIR)" "$(BUILDDIR)"/html
-	$(IN_VENV); $(SPHINXBUILD) -b linkcheck "$(SOURCEDIR)" "$(BUILDDIR)"/epub
+	
+bug-report:
+	$(IN_VENV); $(PYTHON) -m sphinx --bug-report
 
 .PHONY: help Makefile
 
