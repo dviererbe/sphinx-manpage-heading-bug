@@ -1,0 +1,5 @@
+furo
+sphinx<6.0dev
+sphinx_autobuild
+sphinx_copybutton
+sphinx_design
